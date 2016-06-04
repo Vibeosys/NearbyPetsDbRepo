@@ -1,0 +1,13 @@
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('1', 'Birds', 'https://storage.googleapis.com/nearby-categories/birds.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('2', 'Cats', 'https://storage.googleapis.com/nearby-categories/cats.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('3', 'Dogs', 'https://storage.googleapis.com/nearby-categories/dogs.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('4', 'Fish And Aquarium', 'https://storage.googleapis.com/nearby-categories/fish-and-aquarium.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('5', 'Goats And Sheeps', 'https://storage.googleapis.com/nearby-categories/goats-and-sheeps.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('6', 'Horses And Donkeys', 'https://storage.googleapis.com/nearby-categories/horses-and-donkeys.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('7', 'Poultry', 'https://storage.googleapis.com/nearby-categories/poultry.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('8', 'Rodents', 'https://storage.googleapis.com/nearby-categories/rodents.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('9', 'Reptiles', 'https://storage.googleapis.com/nearby-categories/reptiles.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('10', 'Accessories', 'https://storage.googleapis.com/nearby-categories/accessories.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('11', 'Food', 'https://storage.googleapis.com/nearby-categories/food.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('12', 'Services', 'https://storage.googleapis.com/nearby-categories/services.jpg', 1);
+INSERT INTO `nearby_pets_db`.`category` (`CategoryId`, `CategoryDesc`, `CategoryImageUrl`, `Active`) VALUES ('13', 'Lost And Found', 'https://storage.googleapis.com/nearby-categories/lost-and-found.jpg', 1);
