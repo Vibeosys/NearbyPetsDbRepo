@@ -1,10 +1,10 @@
-CREATE DEFINER=`root`@`%` PROCEDURE `getUserPostedAdList`(IN requestedUserId varchar(50),
+CREATE DEFINER=`root`@`%` PROCEDURE `getCategoryWisePostedAdList`(IN requestedCategoryId int,
+IN searchText varchar(20),
 IN requestedLat float, 
 IN requestedLong float,
 IN sortChoice varchar(20),
 IN sortOption varchar(10),
-IN pageNumber int,
-IN searchText varchar(20))
+IN pageNumber int)
 BEGIN
 
 declare maxDistance int;
@@ -38,7 +38,7 @@ set searchQuery = CONCAT("%",searchText,"%");
 if sortOption = "PostedDate" and sortChoice = "DESC" then
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0 and categoryId = requestedCategoryId 
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by PostedDate DESC
@@ -48,7 +48,7 @@ elseif sortOption = "PostedDate" and sortChoice = "ASC" then
 
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0  and categoryId = requestedCategoryId
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by PostedDate ASC
@@ -58,7 +58,7 @@ elseif sortOption = "Price" and sortChoice = "DESC" then
 
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0  and categoryId = requestedCategoryId
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Price DESC
@@ -68,7 +68,7 @@ elseif sortOption = "Price" and sortChoice = "ASC" then
 
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0 and categoryId = requestedCategoryId
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Price ASC
@@ -78,7 +78,7 @@ elseif sortOption = "Distance" and sortChoice = "DESC" then
 
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0 and categoryId = requestedCategoryId
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Distance DESC
@@ -88,7 +88,7 @@ elseif sortOption = "Distance" and sortChoice = "ASC" then
 
 select AdId,AdTitle,Description,DisplayImgUrl,PostedDate,Price,( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad 
-where UserId = requestedUserId
+where StatusId = 0 and categoryId = requestedCategoryId
 and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Distance ASC

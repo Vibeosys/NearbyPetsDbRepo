@@ -2,13 +2,16 @@ CREATE DEFINER=`root`@`%` PROCEDURE `getSavedAdList`(IN requestedLat float,
 IN requestedLong float,
 IN sortChoice varchar(20),
 IN sortOption varchar(10),
-IN pageNumber int)
+IN pageNumber int,
+IN requestedUserId varchar(50),
+IN searchText varchar(40))
 BEGIN
 
 declare maxDistance int;
 declare pageSize int;
 declare lowerPageLimit int;
 declare upperPageLimit int;
+declare searchQuery varchar(40);
 
 SELECT 
     CAST(ConfigValue AS SIGNED)
@@ -30,6 +33,8 @@ else
     set upperPageLimit = pageSize;
 END IF;    
 
+set searchQuery = CONCAT("%",searchText,"%");
+
 if sortOption = "PostedDate" and sortChoice = "DESC" then
 select 
 posted_ad.AdId,
@@ -38,9 +43,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by PostedDate DESC
 LIMIT lowerPageLimit , upperPageLimit;
@@ -53,9 +60,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by PostedDate ASC
 LIMIT lowerPageLimit , upperPageLimit;
@@ -68,9 +77,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Price DESC
 LIMIT lowerPageLimit , upperPageLimit;
@@ -83,9 +94,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Price ASC
 LIMIT lowerPageLimit , upperPageLimit;
@@ -98,9 +111,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Distance DESC
 LIMIT lowerPageLimit , upperPageLimit;
@@ -113,9 +128,11 @@ Description,
 DisplayImgUrl,
 PostedDate,
 Price,
+StatusId,
 ( 6371 * acos( cos( radians(requestedLat) ) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(requestedLong) ) + sin( radians(requestedLat) ) * sin( radians( Latitude ) ) ) ) AS Distance 
 FROM posted_ad inner join favorite_ads on posted_ad.AdId = favorite_ads.AdId 
-and posted_ad.UserId = favorite_ads.UserId
+Where favorite_ads.UserId = requestedUserId
+and (AdTitle Like searchQuery or Description Like searchQuery)
 HAVING Distance <  maxDistance
 Order by Distance ASC
 LIMIT lowerPageLimit , upperPageLimit;
