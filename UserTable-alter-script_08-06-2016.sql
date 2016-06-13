@@ -6,3 +6,8 @@ ADD CONSTRAINT `FkRoleUserRoleId`
   REFERENCES `nearby_pets_db`.`role` (`RoleId`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+  
+ALTER TABLE `nearby_pets_db`.`user` 
+ADD COLUMN `RadiusInKm` DOUBLE NOT NULL DEFAULT 0 COMMENT '' AFTER `Active`;
+
