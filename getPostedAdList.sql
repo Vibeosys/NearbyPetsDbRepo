@@ -1,4 +1,5 @@
 CREATE DEFINER=`root`@`%` PROCEDURE `getPostedAdList`(IN requestedLat float, 
+IN requestedUserId varchar(40),
 IN requestedLong float,
 IN sortChoice varchar(20),
 IN sortOption varchar(10),
@@ -14,11 +15,11 @@ declare searchQuery varchar(40);
 
 
 SELECT 
-    CAST(ConfigValue AS SIGNED)
+    RadiusInKm
 INTO maxDistance FROM
-    config_settings
+    user
 WHERE
-    ConfigKey = 'AdSearchDistanceInKM';
+    UserId = requestedUserId;
 SELECT 
     CAST(ConfigValue AS SIGNED)
 INTO pageSize FROM

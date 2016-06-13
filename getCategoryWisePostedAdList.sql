@@ -1,4 +1,5 @@
 CREATE DEFINER=`root`@`%` PROCEDURE `getCategoryWisePostedAdList`(IN requestedCategoryId int,
+IN requestedUserId varchar(40),
 IN searchText varchar(20),
 IN requestedLat float, 
 IN requestedLong float,
@@ -14,11 +15,11 @@ declare upperPageLimit int;
 declare searchQuery varchar(40);
 
 SELECT 
-    CAST(ConfigValue AS SIGNED)
+    RadiusInKm
 INTO maxDistance FROM
-    config_settings
+    user
 WHERE
-    ConfigKey = 'AdSearchDistanceInKM';
+    UserId = requestedUserId;
 SELECT 
     CAST(ConfigValue AS SIGNED)
 INTO pageSize FROM
