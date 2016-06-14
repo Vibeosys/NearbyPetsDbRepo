@@ -11,3 +11,8 @@ ADD CONSTRAINT `FkCategoryPostedAdsCategoryId`
   REFERENCES `nearby_pets_db`.`category` (`CategoryId`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+  
+  ALTER TABLE `nearby_pets_db`.`posted_ad` 
+ADD COLUMN `AddressType` INT(1) NOT NULL COMMENT '' AFTER `CategoryId`;
+
