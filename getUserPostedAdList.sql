@@ -13,12 +13,8 @@ declare lowerPageLimit int;
 declare upperPageLimit int;
 declare searchQuery varchar(40);
 
-SELECT 
-    CAST(ConfigValue AS SIGNED)
-INTO maxDistance FROM
-    config_settings
-WHERE
-    ConfigKey = 'AdSearchDistanceInKM';
+
+        set maxDistance = 10000;
 SELECT 
     CAST(ConfigValue AS SIGNED)
 INTO pageSize FROM
